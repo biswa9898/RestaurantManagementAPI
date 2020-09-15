@@ -1,0 +1,39 @@
+﻿@model RestaurantMVC.ViewModels.FoodViewModel
+
+@{
+    ViewData["Title"] = "FoodItems";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>FoodItems</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Food Items
+            </th>
+            <th>
+                Price
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (Food item in Model.foods) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+               Rs. @Html.DisplayFor(modelItem => item.Price)
+
+            </td>
+            <td>
+                @Html.ActionLink("Place Order", "PlaceOrder", "Orders", new { UserId = Model.Email, FoodId = item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
